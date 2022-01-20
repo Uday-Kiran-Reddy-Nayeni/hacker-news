@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,7 +47,7 @@ public class UserService implements UserDetailsService {
         User user = new User(registrationDto.getName(),
                 registrationDto.getEmail(),
                 encodedPassword,
-                List.of(new Role("ROLE_USER")));
+                Collections.singleton(new Role("ROLE_USER")));
         return userRepository.save(user);
     }
 
